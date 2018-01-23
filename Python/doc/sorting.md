@@ -1,4 +1,4 @@
-# Python implementation of some common sorting algorithms
+# Sorting algorithms
 
 ## Module functions
 The functions defined in this module are:
