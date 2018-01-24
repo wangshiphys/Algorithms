@@ -3,3 +3,4 @@ Implementation of some common algorithms and data structures using C programming
 
 ## Contents
 * [sorting](sorting.md)
+* [Max Subsequence Sum](MaxSubSeqSum.md)

@@ -1,5 +1,6 @@
-// Sorting.cpp : Defines the entry point for the console application.
+// sorting.cpp : Defines the entry point for this application.
 //
+
 
 #include "sorting.h"
 
@@ -9,7 +10,7 @@ int main()
     int i, array_length = 20000;
     clock_t start, end;
     ElementType *array_to_sort, *sorted_array;
-    void(*sorting)(ElementType *, int);
+    void (*sorting)(ElementType *, int);
 
 
     int algorithm_num = 8;
