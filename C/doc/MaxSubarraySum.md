@@ -13,12 +13,12 @@ Examples:
 
 This module provides **three** algorithms to solve this problem:
 
-* MaxSubarraySum.**BruteForce**(*arr*)
+* int **BruteForce**(*int arr[], int N*)
 
     This solution exhaustively tries all possible subarray and find the one 
     with maximum sum. The running time of this algorithm is `O(N^2)`.
 
-* MaxSubarraySum.**Recursive**(*arr*)
+* int **Recursive**(*int arr[], int N*)
 
     This is a recursive solution and the running time is `O(NlogN)`.
 
@@ -36,7 +36,7 @@ This module provides **three** algorithms to solve this problem:
     in the first half and the largest sum in the second half that include the
     first element in the second half. These two sums can be added together.
 
-* MaxSubarraySum.**Kadane**(*arr*)
+* int **Kadane**(*int arr[], int N*)
 
     This function uses the Kadane's algorithm to solve the problem. This is 
     an `O(N)` (linear) solution and is simple to implement.

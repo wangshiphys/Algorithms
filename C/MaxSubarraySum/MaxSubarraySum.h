@@ -1,10 +1,11 @@
 #pragma once
 
-#ifndef _MAXSUBSEQSUM
-#define _MAXSUBSEQSUM
+#ifndef _MAXSUBARRAYSUM
+#define _MAXSUBARRAYSUM
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #define OUTPUT_CUTOFF 15
@@ -16,9 +17,8 @@ typedef int ElementType;
 
 void print_array(int arr[], int N);
 double timing(clock_t end, clock_t start);
-ElementType MaxSubSeqSum_A(const ElementType arr[], int N);
-ElementType MaxSubSeqSum_B(const ElementType arr[], int N);
-ElementType MaxSubSeqSum_C(const ElementType arr[], int N);
-ElementType MaxSubSeqSum_D(const ElementType arr[], int N);
+ElementType BruteForce(const ElementType arr[], int N);
+ElementType Recursive(const ElementType arr[], int N);
+ElementType Kadane(const ElementType arr[], int N);
 
 #endif

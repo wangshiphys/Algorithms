@@ -1,6 +1,7 @@
-#include "MaxSubseqSum.h"
+#include "MaxSubarraySum.h"
 
 
+// Print the input array in a beautiful format
 void print_array(int arr[], int N)
 {
 	int i;
@@ -19,38 +20,21 @@ void print_array(int arr[], int N)
 }
 
 
+// Calculate the time between `end` and `start` in millisecond
 double timing(clock_t end, clock_t start)
 {
 	return (double)(end - start) * 1000 / CLOCKS_PER_SEC;
 }
 
 
-ElementType MaxSubSeqSum_A(const ElementType arr[], int N)
-{
-	int i, j, k;
-	ElementType  temp, max_sum = 0;
-
-	for (i = 0; i < N; i++) {
-		for (j = i; j < N; j++) {
-			temp = 0;
-			for (k = i; k <= j; k++) {
-				temp += arr[k];
-			}
-			if (temp > max_sum) {
-				max_sum = temp;
-			}
-		}
-	}
-	return max_sum;
-}
-
-
-ElementType MaxSubSeqSum_B(const ElementType arr[], int N)
+// Solution for the Maximum Subarray Sum problem
+// Exhaustively tries all possibilities for the solution to the problem
+ElementType BruteForce(const ElementType arr[], int N)
 {
 	int i, j;
 	ElementType temp, max_sum;
 
-	max_sum = 0;
+	max_sum = arr[0];
 	for (i = 0; i < N; i++) {
 		temp = 0;
 		for (j = i; j < N; j++) {
@@ -72,28 +56,22 @@ static ElementType max3(ElementType a, ElementType b, ElementType c)
 }
 
 
-static ElementType MaxSubSeqSum_C_Helper(const ElementType arr[], int left, int right)
+static ElementType Recursive_Helper(const ElementType arr[], int left, int right)
 {
 	int center, i;
+	ElementType temp;
 	ElementType max_sum_left, max_sum_right;
 	ElementType max_sum_left_border, max_sum_right_border;
-	ElementType temp;
 
-	if (left == right) {
-		if (arr[left] > 0) {
-			return arr[left];
-		}
-		else {
-			return 0;
-		}
-	}
+	if (left == right)
+		return arr[left];
 
 	center = (left + right) / 2;
-	max_sum_left = MaxSubSeqSum_C_Helper(arr, left, center);
-	max_sum_right = MaxSubSeqSum_C_Helper(arr, center+1, right);
+	max_sum_left = Recursive_Helper(arr, left, center);
+	max_sum_right = Recursive_Helper(arr, center+1, right);
 
 	temp = 0;
-	max_sum_left_border = 0;
+	max_sum_left_border = arr[center];
 	for (i = center; i >= left; i--) {
 		temp += arr[i];
 		if (temp > max_sum_left_border) {
@@ -102,7 +80,7 @@ static ElementType MaxSubSeqSum_C_Helper(const ElementType arr[], int left, int 
 	}
 
 	temp = 0;
-	max_sum_right_border = 0;
+	max_sum_right_border = arr[center + 1];
 	for (i = center+1; i <= right; i++) {
 		temp += arr[i];
 		if (temp > max_sum_right_border) {
@@ -110,29 +88,33 @@ static ElementType MaxSubSeqSum_C_Helper(const ElementType arr[], int left, int 
 		}
 	}
 	temp = max_sum_left_border + max_sum_right_border;
-	return max3(max_sum_left, max_sum_right, temp);
+	return max3(max_sum_left, temp, max_sum_right);
 }
 
 
-ElementType MaxSubSeqSum_C(const ElementType arr[], int N)
+// Solution for the Maximum Subarray Sum problem
+// This algorithm uses a "Divide-and-Conquer" strategy
+ElementType Recursive(const ElementType arr[], int N)
 {
-	return MaxSubSeqSum_C_Helper(arr, 0, N - 1);
+	return Recursive_Helper(arr, 0, N - 1);
 }
 
 
-ElementType MaxSubSeqSum_D(const ElementType arr[], int N)
+// Solution for the Maximum Subarray Sum problem
+// Implementation of Kadane's algorithm
+ElementType Kadane(const ElementType arr[], int N)
 {
 	int i;
 	ElementType temp, max_sum;
 
 	temp = 0;
-	max_sum = 0;
+	max_sum = arr[0];
 	for (i = 0; i < N; i++) {
 		temp += arr[i];
 		if (temp > max_sum) {
 			max_sum = temp;
 		}
-		else if (temp < 0) {
+		if (temp < 0) {
 			temp = 0;
 		}
 	}

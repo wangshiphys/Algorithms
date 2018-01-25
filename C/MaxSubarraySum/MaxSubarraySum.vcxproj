@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{E0F96F2F-35E7-4C6E-A780-0C306C1C0303}</ProjectGuid>
+    <ProjectGuid>{A80CF387-D908-4993-8A8D-1B9996E74B3E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -105,14 +105,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="MaxSubSeqSum.h" />
+    <ClCompile Include="MaxSubarraySum.cpp" />
+    <ClCompile Include="MaxSubarraySum_Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MaxSubSeqSum.cpp" />
-    <ClCompile Include="MaxSubSeqSum_Test.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\doc\MaxSubSeqSum.md" />
+    <ClInclude Include="MaxSubarraySum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
